@@ -50,6 +50,7 @@ h1 {
   font-size: small;
   border: 0px;
   border-radius: 3px;
+  resize: none;
 }
 
 #submit {
