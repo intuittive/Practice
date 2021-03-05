@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "PT Serif", serif;
+  /* border-radius: 3px; */
 }
 
 .wrapper {
@@ -11,6 +12,7 @@
   margin: 50px auto;
   box-shadow: 2px 2px 4px rgba(129, 89, 4, 0.125);
   background: #fbf4c0;
+  border-radius: 20px;
 }
 
 h1 {
@@ -21,6 +23,8 @@ h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 30px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 
 .form-field {
@@ -33,6 +37,7 @@ h1 {
   width: 290px;
   padding-left: 20px;
   border: 0px;
+  border-radius: 3px;
 }
 
 ::placeholder {
@@ -44,6 +49,7 @@ h1 {
   padding: 10px 20px;
   font-size: small;
   border: 0px;
+  border-radius: 3px;
 }
 
 #submit {
@@ -56,6 +62,8 @@ h1 {
   font-weight: bolder;
   font-size: 14pt;
   color: #523002;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 textarea:focus,
