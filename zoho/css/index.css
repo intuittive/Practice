@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+h6 {
+  color: #adaeb5;
+  font-weight: bolder;
+}
+
+h1 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  margin-top: 50px;
+  margin-left: 600px;
+  max-width: 271px;
+}
+.img {
+  float: left;
+  clear: left;
+  margin-bottom: 10px;
+  opacity: 0.6;
+}
+
+.tagline {
+  float: left;
+  clear: left;
+  margin-left: 25px;
+  opacity: 0.5;
+}
+
+.header {
+  margin-left: 150px;
+}
+
+.textinput {
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border-width: 1px;
+  padding-left: 15px;
+}
+
+.submit {
+  width: 250px;
+  height: 45px;
+  border-radius: 5px;
+  border-width: thin;
+  background: #397ef6;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.sign_up {
+  width: 250px;
+  height: 45px;
+  border-radius: 5px;
+  border-width: thin;
+  background: #ffffff;
+}
+
+::placeholder {
+  color: #adaeb5;
+  opacity: 1;
+  font-weight: bold;
+  font-size: 8pt;
+}
+
+.form-field .textinput + i {
+  position: relative;
+  left: -30px;
+  color: #adaeb5;
+}
+
+.form-button i {
+  position: relative;
+  left: 55px;
+  color: #367cf6;
+}
+
+.form-button.has-lead-icon {
+  left: -20px;
+  position: relative;
+}
+
+.leng-dropdown {
+  text-align: right;
+}
+
+.leng-dropdown select {
+  border: 0px;
+  outline: 0px;
+  appearance: none;
+}
