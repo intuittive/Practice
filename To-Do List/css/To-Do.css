@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.file {
+  max-width: 1700px;
+  height: 1000px;
+  width: 400%;
+  margin: auto;
+  background: #04a1bf;
+  text-align: center;
+}
+
+h1 {
+  font-family: "Archivo Black", sans-serif;
+  padding: 25px;
+  color: white;
+  font-size: 40pt;
+}
+
+.info {
+  color: #ffcd68;
+  padding-bottom: 10px;
+  font-family: "M PLUS 1p", sans-serif;
+}
+
+.mark {
+  color: #46df70;
+  padding-bottom: 10px;
+  font-family: "M PLUS 1p", sans-serif;
+}
+
+.remove {
+  color: #037a77;
+  padding-bottom: 15px;
+  font-family: "M PLUS 1p", sans-serif;
+}
+
+.input i {
+  position: relative;
+  bottom: 2px;
+  font-size: 14pt;
+  color: #04a1bf;
+}
+
+input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.submit-btn {
+  position: relative;
+  bottom: -2px;
+  left: 5px;
+  width: 46px;
+  height: 37px;
+  border-radius: 8px;
+  background-color: #025f70;
+  border: none;
+}
+
+.submit-btn:hover {
+  background-color: #02798f;
+}
+
+.submit-btn:hover i {
+  color: #ffcd5d;
+}
+
+::placeholder {
+  font-family: "M PLUS 1p", sans-serif;
+  text-align: left;
+  left: 25px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  width: 620px;
+  margin-top: 10px;
+  margin-left: 550px;
+  padding: 10px 10px;
+  background-color: #4eb9cd;
+  border: 3px solid #025f71;
+  border-radius: 8px;
+  text-align: left;
+  left: 600px;
+  color: white;
+}
+
+li:hover {
+  background-color: #76cfe0;
+}
+
+.list-btn {
+  background-color: transparent;
+  border: none;
+  color: #025f71;
+  margin-left: 530px;
+}
