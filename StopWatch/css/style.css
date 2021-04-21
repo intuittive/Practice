@@ -1,0 +1,32 @@
+.wrapper {
+  text-align: center;
+  width: 800px;
+  height: 500px;
+  margin: 30px auto;
+  color: white;
+  padding: 200px;
+  background-color: lightblue;
+  background: lightblue;
+  background: -moz-linear-gradient(-90deg, lightblue, black);
+  background: -webkit-linear-gradient(-90deg, lightblue, black);
+  background: -o-linear-gradient(-90deg, lightblue, black);
+  background: linear-gradient(-90deg, lightblue, black);
+  font-family: "Open Sans Condensed", sans-serif;
+  text-transform: uppercase;
+  font-size: 50pt;
+}
+
+button {
+  padding: 20px;
+  color: lightblue;
+  background: transparent;
+  border: 1px solid lightblue;
+  font-family: "Lato", sans-serif;
+  font-size: 20pt;
+}
+
+button:hover {
+  color: black;
+  background-color: lightblue;
+  cursor: pointer;
+}
