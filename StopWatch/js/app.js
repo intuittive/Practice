@@ -97,7 +97,7 @@ function setTimerDisplay(displayHundredths, displaySeconds, displayMinutes) {
 /**
  * This function changes start/stop button text.
  *
- * @param {srting} text Text to display in the button.
+ * @param {string} text Text to display in the button.
  */
 function setToggleButtonText(text) {
   timerToggleButton.innerHTML = text;
