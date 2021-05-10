@@ -1,0 +1,14 @@
+{
+  "name": "StopWatch",
+  "version": "1.0.0",
+  "description": "A simple stopwatch browser app.",
+  "main": "index.js",
+  "author": "Fernanda Castro",
+  "license": "MIT",
+  "scripts": {
+    "docs": "jsdoc -d docs ./js/app.js"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.6"
+  }
+}
