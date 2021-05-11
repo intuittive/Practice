@@ -114,5 +114,3 @@ function isTimerActive() {
 
 timerToggleButton.addEventListener("click", timerToggleHandler);
 resetButton.addEventListener("click", resetTimer);
-
-export { getTimerDisplayVal };
