@@ -45,19 +45,42 @@
 
     img {
       filter: blur(0px);
+      border: 10px;
+      border-color: #ffc600;
+      border-style: solid !important;
     }
+
   </style>
 
   <script>
-    const img = document.getElementById('img')
+    const img = document.getElementById('img');
     const blurSlider = document.getElementById('blur');
+    const spacingSlider = document.getElementById('spacing');
+    const baseColorSelector = document.getElementById('base');
+
+    let baseColor = baseColorSelector.value;
 
     const blurImg = () => {
       const blurValue = blurSlider.value;
       img.style.filter = `blur(${blurValue}px)`
     }
+
+    const spacingImg = () => {
+      const spacingValue = spacingSlider.value;
+      img.style.border = `${spacingValue}px`;
+      img.style.borderColor = baseColor
+    }
+
+    const colorChange = () => {
+      baseColor = baseColorSelector.value;
+      img.style.borderColor = baseColor;
+    }
+  
     
-    blurSlider.addEventListener('input', blurImg)
+    blurSlider.addEventListener('input', blurImg);
+    spacingSlider.addEventListener('input', spacingImg);
+    baseColorSelector.addEventListener('change', colorChange);
+
 
 
 
