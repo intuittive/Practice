@@ -30,6 +30,7 @@
     }
 
     .panel {
+      display: flex;
       background: #6B0F9C;
       box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
       color: white;
@@ -59,9 +60,13 @@
 
     /* Flex Children */
     .panel > * {
-      margin: 0;
+      margin: 0 auto;
       width: 100%;
       transition: transform 0.5s;
+      align-items: center;
+      justify-content: center;
+      flex: 1 0 auto;
+      display: flex;
     }
 
     .panel p {
@@ -69,9 +74,25 @@
       font-family: 'Amatic SC', cursive;
       text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
       font-size: 2em;
-      padding: 250px 0;
+      transition: 2s ease-in-out;
     }
     
+    .panel > *:first-child {
+      transform: translateY(-100%);
+    }
+
+    .panel.open > *:first-child {
+      transform: translateY(20%);
+    }
+
+    .panel p:nth-child(3) {
+      transform: translateY(100%);
+    }
+
+    .panel.open p:nth-child(3) {
+      transform: translateY(-20%);
+    }
+
     .panel p:nth-child(2) {
       font-size: 4em;
     }
@@ -79,7 +100,7 @@
     .panel.open {
       font-size: 40px;
       flex: 20;
-      transition: ease-in;
+      transition: 0.5s ease-in;
     }
 
   </style>
@@ -87,9 +108,9 @@
 
   <div class="panels">
     <div class="panel panel1">
-      <p>Hey</p>
+      <p id="fadeout">Hey</p>
       <p>Let's</p>
-      <p>Dance</p>
+      <p id="fadeout">Dance</p>
     </div>
     <div class="panel panel2">
       <p>Give</p>
@@ -114,19 +135,14 @@
   </div>
 
   <script>
+    const handlePanelClick = (event) => {
+      const { classList } = event.currentTarget;
+      classList.contains("open") ? classList.remove("open") : classList.add("open");
+    };
+
     const panels = document.querySelectorAll(".panel");
-      panels.forEach((panel) => {
-        panel.addEventListener("click", (event) => {
-          if(event.currentTarget.classList.contains("open")) {
-            event.currentTarget.classList.remove("open");
-          } else {
-            event.currentTarget.classList.add("open");
-          }
-        })
-    })
+    panels.forEach((panel) => panel.addEventListener("click", handlePanelClick));
   </script>
-
-
-
+  
 </body>
 </html>
