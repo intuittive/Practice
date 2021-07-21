@@ -9029,16 +9029,24 @@
   const searchBar = document.querySelector(".search");
   searchBar.addEventListener("keyup", (event) => {
     const { currentTarget } = event;
-    const regex = new RegExp(currentTarget.value, 'gi');
-    const matchedCities = data.filter(place => {
-      const matches = place.city.match(regex) || place.state.match(regex);
-      return !!matches;
-    })
+    const searchValue = currentTarget.value;
+    const regex = new RegExp(searchValue, 'gi');
+    const matchedPlaces = data.map(place => {
+      return {
+        ...place,
+        cityMatches: place.city.match(regex),
+        stateMatches: place.state.match(regex),
+      };
+    }).filter(place => !!(place.cityMatches || place.stateMatches));
     const suggestions = document.querySelectorAll("ul > li");
     suggestions.forEach(suggestion => suggestion.remove());
-    for (const place of matchedCities) {
+    for (const place of matchedPlaces) {
       const li = document.createElement("li");
-      li.appendChild(document.createTextNode(`${place.city}, ${place.state}`));
+      const cityName = place.city.replace(regex, `<span class="h1" style="background:#ffc600">${searchValue}</span>`);
+      const stateName = place.state.replace(regex, `<span class="h1" style="background:#ffc600">${searchValue}</span>`);
+      const name = `<span class="name">${cityName}, ${stateName}</span>`;
+      const population = `<span class="population">${place.population}</span>`;
+      li.innerHTML = name + population;
       suggestionsList.appendChild(li);
     }
   });
