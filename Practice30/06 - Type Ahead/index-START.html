@@ -9025,12 +9025,14 @@
     ]
   
   const suggestionsList = document.querySelector('.suggestions');
-
   const searchBar = document.querySelector(".search");
-  searchBar.addEventListener("keyup", (event) => {
-    const { currentTarget } = event;
-    const searchValue = currentTarget.value;
-    const regex = new RegExp(searchValue, 'gi');
+
+  const clearSuggestions = () => {
+    const suggestions = document.querySelectorAll("ul > li");
+    suggestions.forEach(suggestion => suggestion.remove());
+  }
+    
+  const getMatchedPlaces = (data, regex) => {
     const matchedPlaces = data.map(place => {
       return {
         ...place,
@@ -9038,18 +9040,39 @@
         stateMatches: place.state.match(regex),
       };
     }).filter(place => !!(place.cityMatches || place.stateMatches));
-    const suggestions = document.querySelectorAll("ul > li");
-    suggestions.forEach(suggestion => suggestion.remove());
+    return matchedPlaces;
+  }
+
+  const createPlaceSpanStr = (place, value, regex, style) => {
+    const spanStr = place.replace(regex, `<span style="${style}">${value}</span>`);
+    return spanStr;
+  }
+
+  const getPlaceListItem = (place, searchValue, regex) => {
+    const li = document.createElement("li");
+    const cityName = createPlaceSpanStr(place.city, searchValue, regex, style = "background:#ffc600")
+    const stateName = createPlaceSpanStr(place.state, searchValue, regex, style = "background:#ffc600")
+    const name = `<span class="name">${cityName}, ${stateName}</span>`;
+    const population = `<span class="population">${place.population}</span>`;
+    li.innerHTML = name + population;
+    return li;
+  }
+
+  const handleSearch = (event) => {
+    const { currentTarget } = event;
+    const searchValue = currentTarget.value;
+    const regex = new RegExp(searchValue, 'gi');
+
+    clearSuggestions();
+
+    const matchedPlaces = getMatchedPlaces(data, regex);
     for (const place of matchedPlaces) {
-      const li = document.createElement("li");
-      const cityName = place.city.replace(regex, `<span class="h1" style="background:#ffc600">${searchValue}</span>`);
-      const stateName = place.state.replace(regex, `<span class="h1" style="background:#ffc600">${searchValue}</span>`);
-      const name = `<span class="name">${cityName}, ${stateName}</span>`;
-      const population = `<span class="population">${place.population}</span>`;
-      li.innerHTML = name + population;
-      suggestionsList.appendChild(li);
+      const placeListItem = getPlaceListItem(place, searchValue, regex);
+      suggestionsList.appendChild(placeListItem);
     }
-  });
+  }
+
+  searchBar.addEventListener("keyup", handleSearch);
 </script>
 </body>
 </html>
