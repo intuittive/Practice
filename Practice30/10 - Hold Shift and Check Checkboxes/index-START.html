@@ -102,11 +102,12 @@
   const item = document.getElementById("item");
 
   const traverseUpItemList = (target) => {
-    // Find all checked box above a target checkbox.
-    let isElItemDiv = true;
-    let upperItemDivs = []
+    // Find all unchecked boxes above a target checkbox.
+    // If we hit the top without finding a checked box return an empty array.
+    let isItemDivOrUnchecked = true;
+    const upperItemDivs = [];
 
-    while (isElItemDiv) {
+    while (isItemDivOrUnchecked) {
       let parentEl = null;
       if (!upperItemDivs.length) {
         parentEl = target.parentElement.previousElementSibling;
@@ -114,16 +115,26 @@
       else {
         parentEl = upperItemDivs[upperItemDivs.length - 1].previousElementSibling;
       }
-      if (parentEl && parentEl.matches("div.item")) upperItemDivs.push(parentEl);
-      else isElItemDiv = false;
+      if (parentEl && parentEl.querySelector("input").checked) isItemDivOrUnchecked = false;
+      else if (parentEl && parentEl.matches("div.item")) upperItemDivs.push(parentEl);
+      else {
+        upperItemDivs = [];
+        isItemDivOrUnchecked = false;
+      }
     }
     return upperItemDivs;
   }
 
   inbox.addEventListener("click", ({ target }) => {
+    if (!target.checked) return;
+    if (!shiftKeydown) return;
     if (target.matches("input")) {
       const upperItemDivs = traverseUpItemList(target);
       console.log('upperItemDivs', upperItemDivs);
+      upperItemDivs.forEach(itemDiv => {
+        const checkbox = itemDiv.querySelector("input");
+        checkbox.checked = true;
+      });
     }
   })
 
