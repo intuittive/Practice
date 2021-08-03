@@ -96,25 +96,30 @@
   </div>
 
 <script>
+  // Consts
   const SHIFT_KEY_CODE = 16;
-  let shiftKeydown = false;
   const inbox = document.getElementById("inbox");
   const item = document.getElementById("item");
+
+  // State
+  let shiftKeydown = false;
+
+  const getParentElementCheckbox = (target) => {
+    let parentEl = null;
+    if (target.matches("input")) parentEl = target.parentElement.previousElementSibling;
+    else parentEl = target.previousElementSibling;
+
+    return parentEl;
+  }
 
   const traverseUpItemList = (target) => {
     // Find all unchecked boxes above a target checkbox.
     // If we hit the top without finding a checked box return an empty array.
     let isItemDivOrUnchecked = true;
-    const upperItemDivs = [];
+    let upperItemDivs = [];
 
     while (isItemDivOrUnchecked) {
-      let parentEl = null;
-      if (!upperItemDivs.length) {
-        parentEl = target.parentElement.previousElementSibling;
-      }
-      else {
-        parentEl = upperItemDivs[upperItemDivs.length - 1].previousElementSibling;
-      }
+      const parentEl = getParentElementCheckbox(upperItemDivs.slice(-1)[0] || target);
       if (parentEl && parentEl.querySelector("input").checked) isItemDivOrUnchecked = false;
       else if (parentEl && parentEl.matches("div.item")) upperItemDivs.push(parentEl);
       else {
@@ -125,17 +130,20 @@
     return upperItemDivs;
   }
 
-  inbox.addEventListener("click", ({ target }) => {
+  const checkItemCheckbox = (target) => {
     if (!target.checked) return;
     if (!shiftKeydown) return;
     if (target.matches("input")) {
       const upperItemDivs = traverseUpItemList(target);
-      console.log('upperItemDivs', upperItemDivs);
       upperItemDivs.forEach(itemDiv => {
         const checkbox = itemDiv.querySelector("input");
         checkbox.checked = true;
       });
     }
+  }
+
+  inbox.addEventListener("click", ({ target }) => {
+    checkItemCheckbox(target);
   })
 
   window.addEventListener("keydown", ({ keyCode }) => {
